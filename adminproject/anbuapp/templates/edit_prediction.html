@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Loan</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    background:white;
+    padding:40px;
+    border-radius:10px;
+    width:350px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+label{
+    font-weight:bold;
+    font-size:14px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#2a5298;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#2a5298;
+    border:none;
+    color:white;
+    font-size:16px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1e3c72;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Edit Loan</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<label>Loan ID</label>
+<input type="number" name="loan_id" value="{{loan.loan_id}}">
+
+<label>Dependents</label>
+<input type="number" name="no_of_dependents" value="{{loan.no_of_dependents}}">
+
+<label>Income</label>
+<input type="number" name="income_annum" value="{{loan.income_annum}}">
+
+<label>Loan Amount</label>
+<input type="number" name="loan_amount" value="{{loan.loan_amount}}">
+
+<label>Loan Term</label>
+<input type="number" name="loan_term" value="{{loan.loan_term}}">
+
+<label>Cibil Score</label>
+<input type="number" name="cibil_score" value="{{loan.cibil_score}}">
+
+<button type="submit">Update Loan</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
