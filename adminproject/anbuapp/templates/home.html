@@ -1,176 +1,741 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Bank AI - Loan Prediction</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>S Bank | Personal Banking</title>
+
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
             margin: 0;
-            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
         }
 
-        .container {
-            width: 800px;
-            margin: 40px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-        }
+        /* =========================
+           HEADER
+        ========================= */
 
-        h2 {
-            text-align: center;
-            color: #2a5298;
-        }
+        .header {
+            background: #071d3b;
+            color: white;
+            padding: 18px 7%;
 
-        .form-group {
             display: flex;
+            align-items: center;
             justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #c49a3a;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav a:hover {
+            color: #c49a3a;
+        }
+
+        .login-btn {
+            border: 1px solid #c49a3a;
+            padding: 9px 18px;
+            border-radius: 5px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 520px;
+
+            background:
+                linear-gradient(
+                    rgba(7, 29, 59, 0.92),
+                    rgba(11, 55, 109, 0.88)
+                );
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+
+            padding: 70px 7%;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .small-title {
+            color: #c49a3a;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
             margin-bottom: 15px;
         }
 
-        .form-group label {
-            width: 40%;
-            font-weight: bold;
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.15;
+            margin: 0 0 20px;
         }
 
-        .form-group input,
-        .form-group select {
-            width: 55%;
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+        .hero h1 span {
+            color: #c49a3a;
         }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #2a5298;
-            color: white;
-            border: none;
-            border-radius: 5px;
+        .hero p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #dce6f5;
+            max-width: 600px;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .eligibility-btn {
+            display: inline-block;
+
+            margin-top: 25px;
+
+            padding: 15px 28px;
+
+            background: #c49a3a;
+            color: #071d3b;
+
+            text-decoration: none;
+
+            border-radius: 6px;
+
             font-size: 16px;
-            cursor: pointer;
+            font-weight: bold;
+
+            transition: 0.3s;
         }
 
-        button:hover {
-            background: #1e3c72;
+        .eligibility-btn:hover {
+            background: #e0b957;
+            transform: translateY(-2px);
         }
 
-        .result {
-            margin-top: 20px;
+        /* =========================
+           HERO INFO
+        ========================= */
+
+        .hero-note {
+            margin-top: 18px;
+
+            font-size: 13px;
+
+            color: #bfcce0;
+        }
+
+        /* =========================
+           SERVICES
+        ========================= */
+
+        .services {
+            max-width: 1100px;
+
+            margin: -55px auto 60px;
+
+            padding: 0 20px;
+
+            position: relative;
+        }
+
+        .service-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .service-card {
+            background: white;
+
+            padding: 30px 25px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.08);
+
             text-align: center;
-            font-size: 20px;
+        }
+
+        .icon {
+            width: 55px;
+            height: 55px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            background: #edf3fb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 24px;
+        }
+
+        .service-card h3 {
+            color: #0b2451;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: #687386;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+        /* =========================
+           HOW IT WORKS
+        ========================= */
+
+        .how-section {
+            max-width: 1050px;
+
+            margin: 70px auto;
+
+            padding: 0 25px;
+
+            text-align: center;
+        }
+
+        .section-title {
+            color: #0b2451;
+
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            color: #687386;
+
+            max-width: 650px;
+
+            margin: 0 auto 40px;
+
+            line-height: 1.6;
+        }
+
+        .steps {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .step-card {
+            padding: 25px;
+
+            background: white;
+
+            border-radius: 10px;
+
+            border: 1px solid #e5eaf1;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+
+            background: #0b376d;
+
+            color: white;
+
+            border-radius: 50%;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
             font-weight: bold;
         }
 
-        .approved {
-            color: green;
+        .step-card h3 {
+            color: #0b2451;
         }
 
-        .rejected {
-            color: red;
+        .step-card p {
+            color: #687386;
+
+            font-size: 14px;
+
+            line-height: 1.6;
         }
+
+        /* =========================
+           SECURITY
+        ========================= */
+
+        .security {
+            background: #071d3b;
+
+            color: white;
+
+            padding: 55px 7%;
+
+            text-align: center;
+        }
+
+        .security h2 {
+            margin-bottom: 15px;
+        }
+
+        .security p {
+            max-width: 700px;
+
+            margin: auto;
+
+            color: #cbd7e8;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            background: #04152c;
+
+            color: #aebbd0;
+
+            padding: 25px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            font-size: 13px;
+        }
+
+        .footer strong {
+            color: white;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .header {
+                padding: 18px 5%;
+            }
+
+            .nav {
+                gap: 10px;
+            }
+
+            .nav a:not(.login-btn) {
+                display: none;
+            }
+
+            .hero {
+                padding: 60px 7%;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .service-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .services {
+                margin-top: 30px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+
     </style>
+
 </head>
+
+
 <body>
 
-<div class="container">
-    <h2>Loan Prediction System</h2>
 
-    <form method="POST">
-        {% csrf_token %}
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-        <div class="form-group">
-            <label>Loan ID</label>
-            <input type="number" name="loan_id" required>
+<header class="header">
+
+    <div class="logo">
+
+        S <span>BANK</span>
+
+    </div>
+
+
+    <nav class="nav">
+
+        <a href="#">
+            Personal Banking
+        </a>
+
+        <a href="#">
+            Loans
+        </a>
+
+        <a href="#">
+            Support
+        </a>
+
+        <a
+            href="{% url 'login' %}"
+            class="login-btn"
+        >
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="small-title">
+
+            SMART BANKING • AI POWERED
+
         </div>
 
-        <div class="form-group">
-            <label>No of Dependents</label>
-            <input type="number" name="no_of_dependents" required>
+
+        <h1>
+
+            Make your next move
+            <span>with confidence.</span>
+
+        </h1>
+
+
+        <p>
+
+            Explore your loan options with S Bank's
+            AI-powered preliminary eligibility assessment.
+            Get a quick indication of your loan eligibility
+            based on your financial profile.
+
+        </p>
+
+
+        <!-- MAIN BUTTON -->
+
+        <a
+            href="{% url 'eligibility_step1' %}"
+            class="eligibility-btn"
+        >
+
+            Check My Loan Eligibility →
+
+        </a>
+
+
+        <div class="hero-note">
+
+            ✓ Quick assessment &nbsp;&nbsp;
+            ✓ Secure information &nbsp;&nbsp;
+            ✓ AI-powered analysis
+
         </div>
 
-        <div class="form-group">
-            <label>Education</label>
-            <select name="education" required>
-                <option value="Graduate">Graduate</option>
-                <option value="Not Graduate">Not Graduate</option>
-            </select>
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
+
+<section class="services">
+
+    <div class="service-grid">
+
+
+        <div class="service-card">
+
+            <div class="icon">
+                💰
+            </div>
+
+            <h3>
+                Personal Loans
+            </h3>
+
+            <p>
+
+                Check your preliminary eligibility
+                and understand your potential loan
+                options.
+
+            </p>
+
         </div>
 
-        <div class="form-group">
-            <label>Self Employed</label>
-            <select name="self_employed" required>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+
+
+        <div class="service-card">
+
+            <div class="icon">
+                🤖
+            </div>
+
+            <h3>
+                AI Assessment
+            </h3>
+
+            <p>
+
+                Our machine learning model analyses
+                your financial information to provide
+                a preliminary assessment.
+
+            </p>
+
         </div>
 
-        <div class="form-group">
-            <label>Income per Annum</label>
-            <input type="number" name="income_annum" required>
+
+
+        <div class="service-card">
+
+            <div class="icon">
+                🔒
+            </div>
+
+            <h3>
+                Secure Banking
+            </h3>
+
+            <p>
+
+                Your application information is handled
+                through a secure authenticated banking
+                workflow.
+
+            </p>
+
         </div>
 
-        <div class="form-group">
-            <label>Loan Amount</label>
-            <input type="number" name="loan_amount" required>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section class="how-section">
+
+
+    <h2 class="section-title">
+
+        How it works
+
+    </h2>
+
+
+    <p class="section-description">
+
+        Checking your preliminary loan eligibility
+        takes only a few simple steps.
+
+    </p>
+
+
+    <div class="steps">
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <h3>
+                Tell us about yourself
+            </h3>
+
+            <p>
+
+                Provide basic information such as
+                education, employment status and
+                number of dependents.
+
+            </p>
+
         </div>
 
-        <div class="form-group">
-            <label>Loan Term</label>
-            <input type="number" name="loan_term" required>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <h3>
+                Share financial details
+            </h3>
+
+            <p>
+
+                Enter your income, requested loan
+                amount, CIBIL score and asset details.
+
+            </p>
+
         </div>
 
-        <div class="form-group">
-            <label>CIBIL Score</label>
-            <input type="number" name="cibil_score" required>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <h3>
+                Get your assessment
+            </h3>
+
+            <p>
+
+                Our trained machine learning model
+                analyses your information and provides
+                a preliminary result.
+
+            </p>
+
         </div>
 
-        <div class="form-group">
-            <label>Residential Assets Value</label>
-            <input type="number" name="residential_assets_value" required>
-        </div>
 
-        <div class="form-group">
-            <label>Commercial Assets Value</label>
-            <input type="number" name="commercial_assets_value" required>
-        </div>
+    </div>
 
-        <div class="form-group">
-            <label>Luxury Assets Value</label>
-            <input type="number" name="luxury_assets_value" required>
-        </div>
+</section>
 
-        <div class="form-group">
-            <label>Bank Asset Value</label>
-            <input type="number" name="bank_asset_value" required>
-        </div>
 
-        <button type="submit">Check Loan Status</button>
-       
-    </form>
 
-    {% if prediction %}
-        <div class="result 
-            {% if prediction == 'Approved' %}approved{% else %}rejected{% endif %}">
-            Loan Status: {{ prediction }}
-        </div>
-     {% endif %}
-    
-    {% if prediction %}
+<!-- =====================================================
+     SECURITY
+===================================================== -->
 
-<h2>Loan Status: {{ prediction }}</h2> 
+<section class="security">
 
-<a href="{% url 'prediction_list' %}">
-    <button style="padding:10px 20px; background-color:#1e3a8a; color:white; border:none; border-radius:5px;">
-        View All Predictions
-    </button>
-</a>
+    <h2>
 
-{% endif %}
-</div>
+        Your information matters to us.
+
+    </h2>
+
+
+    <p>
+
+        S Bank uses an authenticated application
+        workflow to protect customer information.
+        The AI result is a preliminary assessment
+        and does not represent final loan approval.
+
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div>
+
+        © 2026
+        <strong>S Bank</strong>.
+        All rights reserved.
+
+    </div>
+
+
+    <div>
+
+        AI-Powered Loan Eligibility System
+
+    </div>
+
+</footer>
+
+
 
 </body>
+
 </html>

@@ -1,75 +1,188 @@
+import pandas as pd
+import pickle
 
-import os
-
-import joblib
-import pandas as ai
-from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-
-import os
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(BASE_DIR, "loan.csv")
-
-loan = ai.read_csv(csv_path)
-for col in loan.select_dtypes(include="object").columns:
-    loan[col] = loan[col].str.strip()
-# loan data 
-loan.columns = loan.columns.str.strip()
-print(loan) 
-
-loan.replace("",float("nan"),inplace=True)
-
-print(loan)
-
-print(loan.columns)
-
-# print([repr(c) for c in loan.columns])
-
-catogarical_col = ['education','loan_status','self_employed']
-encoder={}
-
-for col in catogarical_col:
-    le = LabelEncoder()
-    loan[col]=le.fit_transform(loan[col])
-    encoder[col]=le
-
-print(loan)
-
-# print(loan.dtypes) 
-
-loan.fillna(loan.mean(),inplace=True)
-print(loan)
-
-x=loan.drop('loan_status',axis=1)
-
-print(x)
-
-y=loan['loan_status']
-print(y)
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 
 
+# -----------------------------------------
+# 1. Read CSV file
+# -----------------------------------------
 
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42)
+df = pd.read_csv("loan.csv")
 
 
-model=DecisionTreeClassifier(random_state=42)  
-model.fit(x_train,y_train)   
+# -----------------------------------------
+# 2. Remove spaces from column names
+# -----------------------------------------
 
-y_pred=model.predict(x_test)
-accuracy=accuracy_score(y_test,y_pred)
-print("accuracy:",accuracy)
+df.columns = df.columns.str.strip()
 
-model_path = os.path.join(BASE_DIR, "loan_model_joblib")
-encoder_path = os.path.join(BASE_DIR, "encoder.joblib")
 
-joblib.dump(model, model_path)
-joblib.dump(encoder, encoder_path)
+# -----------------------------------------
+# 3. Remove spaces from text values
+# -----------------------------------------
 
-# print("Model saved at:", model_path)
-# print("Encoder saved at:", encoder_path)
+df["education"] = df["education"].astype(str).str.strip()
 
-# print("Education Classes:", encoder["education"].classes_)
-# print("Unique Education Values:", loan["education"].unique())
+df["self_employed"] = (
+    df["self_employed"]
+    .astype(str)
+    .str.strip()
+)
+
+df["loan_status"] = (
+    df["loan_status"]
+    .astype(str)
+    .str.strip()
+)
+
+
+# -----------------------------------------
+# 4. Check loan status values
+# -----------------------------------------
+
+print("Loan Status Values:")
+print(df["loan_status"].value_counts())
+
+
+# -----------------------------------------
+# 5. Convert categorical values
+# -----------------------------------------
+
+df["education"] = df["education"].map({
+    "Graduate": 1,
+    "Not Graduate": 0
+})
+
+
+df["self_employed"] = df["self_employed"].map({
+    "Yes": 1,
+    "No": 0
+})
+
+
+df["loan_status"] = df["loan_status"].map({
+    "Approved": 1,
+    "Rejected": 0
+})
+
+
+# -----------------------------------------
+# 6. Fill missing values
+# -----------------------------------------
+
+df = df.fillna(0)
+
+
+# -----------------------------------------
+# 7. Input columns
+# -----------------------------------------
+
+X = df[
+    [
+        "no_of_dependents",
+        "education",
+        "self_employed",
+        "income_annum",
+        "loan_amount",
+        "loan_term",
+        "cibil_score",
+        "residential_assets_value",
+        "commercial_assets_value",
+        "luxury_assets_value",
+        "bank_asset_value"
+    ]
+]
+
+
+# -----------------------------------------
+# 8. Target column
+# -----------------------------------------
+
+y = df["loan_status"]
+
+
+# -----------------------------------------
+# 9. Check target classes
+# -----------------------------------------
+
+print("Target Classes:")
+print(y.value_counts())
+
+
+# -----------------------------------------
+# 10. Split data
+# -----------------------------------------
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42,
+    stratify=y
+)
+
+
+# -----------------------------------------
+# 11. Create model
+# -----------------------------------------
+
+model = LogisticRegression(
+    max_iter=1000
+)
+
+
+# -----------------------------------------
+# 12. Train model
+# -----------------------------------------
+
+model.fit(
+    X_train,
+    y_train
+)
+
+
+# -----------------------------------------
+# 13. Test model
+# -----------------------------------------
+
+prediction = model.predict(X_test)
+
+
+# -----------------------------------------
+# 14. Calculate accuracy
+# -----------------------------------------
+
+accuracy = accuracy_score(
+    y_test,
+    prediction
+)
+
+print("Model trained successfully!")
+
+print(
+    "Accuracy:",
+    accuracy
+)
+
+
+# -----------------------------------------
+# 15. Save model
+# -----------------------------------------
+
+with open(
+    "loan_model.pkl",
+    "wb"
+) as file:
+
+    pickle.dump(
+        model,
+        file
+    )
+
+
+print(
+    "loan_model.pkl created successfully!"
+)

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>S Bank | Review Application</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+
+        /* HEADER */
+
+        .header {
+            background: #071d3b;
+            color: white;
+            padding: 20px 7%;
+        }
+
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+
+        .logo span {
+            color: #c49a3a;
+        }
+
+
+        /* MAIN CONTAINER */
+
+        .container {
+            max-width: 850px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* PROGRESS */
+
+        .progress {
+            display: flex;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+
+        .circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #0b376d;
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-weight: bold;
+        }
+
+
+        .circle.active {
+            background: #c49a3a;
+        }
+
+
+        .line {
+            flex: 1;
+            height: 3px;
+            background: #0b376d;
+            margin: 0 10px;
+        }
+
+
+        /* TITLE */
+
+        .step {
+            color: #0b4da2;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+
+        h1 {
+            color: #0b2451;
+            margin-bottom: 10px;
+        }
+
+
+        .description {
+            color: #687386;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+
+        /* SECTIONS */
+
+        .section {
+            margin-top: 30px;
+        }
+
+
+        .section h2 {
+            font-size: 18px;
+            color: #0b2451;
+
+            border-bottom: 1px solid #e1e6ee;
+
+            padding-bottom: 12px;
+        }
+
+
+        /* DETAILS GRID */
+
+        .details {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+
+        .item {
+            background: #f7f9fc;
+
+            padding: 15px;
+
+            border-radius: 7px;
+        }
+
+
+        .label {
+            font-size: 12px;
+
+            color: #737d8e;
+
+            margin-bottom: 5px;
+        }
+
+
+        .value {
+            font-size: 15px;
+
+            font-weight: bold;
+
+            color: #172033;
+
+            word-break: break-word;
+        }
+
+
+        /* NOTICE */
+
+        .notice {
+            margin-top: 30px;
+
+            padding: 16px;
+
+            background: #f5f8fd;
+
+            border-left: 4px solid #0b4da2;
+
+            color: #4b5563;
+
+            line-height: 1.5;
+        }
+
+
+        /* BUTTONS */
+
+        .buttons {
+            display: flex;
+
+            gap: 15px;
+
+            margin-top: 35px;
+        }
+
+
+        .back-btn,
+        .check-btn {
+            flex: 1;
+
+            padding: 15px;
+
+            border-radius: 6px;
+
+            text-align: center;
+
+            font-size: 15px;
+
+            font-weight: bold;
+        }
+
+
+        /* BACK */
+
+        .back-btn {
+            background: #eef2f7;
+
+            color: #374151;
+
+            text-decoration: none;
+
+            border: none;
+        }
+
+
+        .back-btn:hover {
+            background: #e2e8f0;
+        }
+
+
+        /* CHECK BUTTON */
+
+        .check-form {
+            flex: 1;
+            margin: 0;
+        }
+
+
+        .check-btn {
+            width: 100%;
+
+            background: #0b376d;
+
+            color: white;
+
+            border: none;
+
+            cursor: pointer;
+        }
+
+
+        .check-btn:hover {
+            background: #082b57;
+        }
+
+
+        /* FOOTER TEXT */
+
+        .footer-note {
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #8a94a6;
+
+            font-size: 12px;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+
+            .container {
+                margin: 25px 15px;
+
+                padding: 25px;
+            }
+
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+
+            .buttons {
+                flex-direction: column;
+            }
+
+
+            .check-form {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div class="header">
+
+    <div class="logo">
+
+        S <span>BANK</span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN CONTAINER
+===================================================== -->
+
+<div class="container">
+
+
+    <!-- =================================================
+         PROGRESS
+    ================================================== -->
+
+    <div class="progress">
+
+        <div class="circle">
+            ✓
+        </div>
+
+
+        <div class="line"></div>
+
+
+        <div class="circle">
+            ✓
+        </div>
+
+
+        <div class="line"></div>
+
+
+        <div class="circle active">
+            3
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         STEP TITLE
+    ================================================== -->
+
+    <div class="step">
+        STEP 3 OF 3
+    </div>
+
+
+    <h1>
+        Review Your Application
+    </h1>
+
+
+    <p class="description">
+
+        Please review all the information you provided.
+
+        Make sure the details are correct before checking
+
+        your preliminary loan eligibility.
+
+    </p>
+
+
+
+    <!-- =================================================
+         PERSONAL DETAILS
+    ================================================== -->
+
+    <div class="section">
+
+        <h2>
+            Personal Details
+        </h2>
+
+
+        <div class="details">
+
+
+            <!-- Loan ID -->
+
+            <div class="item">
+
+                <div class="label">
+                    Loan ID
+                </div>
+
+                <div class="value">
+                    {{ loan.loan_id }}
+                </div>
+
+            </div>
+
+
+            <!-- Dependents -->
+
+            <div class="item">
+
+                <div class="label">
+                    Number of Dependents
+                </div>
+
+                <div class="value">
+                    {{ loan.no_of_dependents }}
+                </div>
+
+            </div>
+
+
+            <!-- Education -->
+
+            <div class="item">
+
+                <div class="label">
+                    Education
+                </div>
+
+                <div class="value">
+                    {{ loan.education }}
+                </div>
+
+            </div>
+
+
+            <!-- Employment -->
+
+            <div class="item">
+
+                <div class="label">
+                    Employment Status
+                </div>
+
+                <div class="value">
+
+                    {% if loan.self_employed == "Yes" %}
+
+                        Self Employed
+
+                    {% else %}
+
+                        Salaried / Not Self Employed
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         FINANCIAL DETAILS
+    ================================================== -->
+
+    <div class="section">
+
+        <h2>
+            Financial Details
+        </h2>
+
+
+        <div class="details">
+
+
+            <!-- Income -->
+
+            <div class="item">
+
+                <div class="label">
+                    Annual Income
+                </div>
+
+                <div class="value">
+                    ₹ {{ loan.income_annum }}
+                </div>
+
+            </div>
+
+
+            <!-- Loan Amount -->
+
+            <div class="item">
+
+                <div class="label">
+                    Requested Loan Amount
+                </div>
+
+                <div class="value">
+                    ₹ {{ loan.loan_amount }}
+                </div>
+
+            </div>
+
+
+            <!-- Loan Term -->
+
+            <div class="item">
+
+                <div class="label">
+                    Loan Tenure
+                </div>
+
+                <div class="value">
+                    {{ loan.loan_term }} Years
+                </div>
+
+            </div>
+
+
+            <!-- CIBIL -->
+
+            <div class="item">
+
+                <div class="label">
+                    CIBIL Score
+                </div>
+
+                <div class="value">
+                    {{ loan.cibil_score }}
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         ASSET DETAILS
+    ================================================== -->
+
+    <div class="section">
+
+        <h2>
+            Asset Details
+        </h2>
+
+
+        <div class="details">
+
+
+            <!-- Residential -->
+
+            <div class="item">
+
+                <div class="label">
+                    Residential Assets
+                </div>
+
+                <div class="value">
+                    ₹ {{ loan.residential_assets_value }}
+                </div>
+
+            </div>
+
+
+            <!-- Commercial -->
+
+            <div class="item">
+
+                <div class="label">
+                    Commercial Assets
+                </div>
+
+                <div class="value">
+                    ₹ {{ loan.commercial_assets_value }}
+                </div>
+
+            </div>
+
+
+            <!-- Luxury -->
+
+            <div class="item">
+
+                <div class="label">
+                    Luxury Assets
+                </div>
+
+                <div class="value">
+                    ₹ {{ loan.luxury_assets_value }}
+                </div>
+
+            </div>
+
+
+            <!-- Bank -->
+
+            <div class="item">
+
+                <div class="label">
+                    Bank Assets
+                </div>
+
+                <div class="value">
+                    ₹ {{ loan.bank_asset_value }}
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         IMPORTANT NOTICE
+    ================================================== -->
+
+    <div class="notice">
+
+        <strong>Important:</strong>
+
+        This is an AI-based preliminary eligibility
+        assessment. The final loan approval is subject
+        to the bank's verification and approval process.
+
+    </div>
+
+
+
+    <!-- =================================================
+         BUTTONS
+    ================================================== -->
+
+    <div class="buttons">
+
+
+        <!-- BACK BUTTON -->
+
+        <a
+            href="{% url 'eligibility_step2' %}"
+            class="back-btn"
+        >
+
+            ← Back
+
+        </a>
+
+
+
+        <!-- CHECK ELIGIBILITY -->
+
+        <form
+            method="POST"
+            action="{% url 'check_eligibility' %}"
+            class="check-form"
+        >
+
+            {% csrf_token %}
+
+
+            <button
+                type="submit"
+                class="check-btn"
+            >
+
+                Check My Eligibility →
+
+            </button>
+
+        </form>
+
+
+    </div>
+
+
+
+    <div class="footer-note">
+
+        Your information is processed securely for
+        preliminary eligibility assessment.
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

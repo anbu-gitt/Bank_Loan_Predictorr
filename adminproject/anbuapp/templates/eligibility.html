@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>S Bank | Loan Eligibility</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        .header {
+            background: #071d3b;
+            color: white;
+            padding: 20px 7%;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #c49a3a;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+        }
+
+        .step {
+            color: #0b4da2;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #0b2451;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #687386;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .progress {
+            display: flex;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .circle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #c49a3a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .line {
+            flex: 1;
+            height: 3px;
+            background: #dce2eb;
+            margin: 0 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #26364d;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d5dce6;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #0b4da2;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            background: #0b376d;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #082b57;
+        }
+
+        .info {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f5f8fd;
+            border-left: 4px solid #0b4da2;
+            color: #596579;
+            line-height: 1.5;
+        }
+
+        @media(max-width:650px) {
+
+            .container {
+                margin: 25px 15px;
+                padding: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<div class="header">
+
+    <div class="logo">
+        S <span>BANK</span>
+    </div>
+
+</div>
+
+
+<div class="container">
+
+
+    <!-- PROGRESS -->
+
+    <div class="progress">
+
+        <div class="circle">
+            1
+        </div>
+
+        <div class="line"></div>
+
+        <div class="circle"
+             style="background:#dce2eb;color:#687386;">
+            2
+        </div>
+
+        <div class="line"></div>
+
+        <div class="circle"
+             style="background:#dce2eb;color:#687386;">
+            3
+        </div>
+
+    </div>
+
+
+    <div class="step">
+        STEP 1 OF 3
+    </div>
+
+
+    <h1>
+        Let's Check Your Loan Eligibility
+    </h1>
+
+
+    <p class="description">
+        Please provide some basic information about yourself.
+        This information will be used by our AI-based eligibility
+        assessment system.
+    </p>
+
+
+    <!-- FORM -->
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+
+        <div class="form-group">
+
+            <label>
+                Loan ID
+            </label>
+
+            <input
+                type="number"
+                name="loan_id"
+                placeholder="Enter Loan ID"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Number of Dependents
+            </label>
+
+            <input
+                type="number"
+                name="no_of_dependents"
+                min="0"
+                placeholder="Example: 2"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Education
+            </label>
+
+            <select name="education" required>
+
+                <option value="">
+                    Select Education
+                </option>
+
+                <option value="Graduate">
+                    Graduate
+                </option>
+
+                <option value="Not Graduate">
+                    Not Graduate
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Employment Status
+            </label>
+
+            <select name="self_employed" required>
+
+                <option value="">
+                    Select Employment Status
+                </option>
+
+                <option value="No">
+                    Salaried / Not Self Employed
+                </option>
+
+                <option value="Yes">
+                    Self Employed
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="submit-btn"
+        >
+            Continue to Financial Details →
+        </button>
+
+
+    </form>
+
+
+    <div class="info">
+
+        <strong>Privacy Notice:</strong>
+
+        Your information is used only for the preliminary
+        loan eligibility assessment and is processed securely
+        within this application.
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

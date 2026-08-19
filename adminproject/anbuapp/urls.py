@@ -1,25 +1,128 @@
-"""
-URL configuration for adminproject project.
+from django.urls import path
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import include, path
-
+from . import views
 
 
 urlpatterns = [
-    path('',include('anbuapp.urls')),
-    
+
+    # ========================================================
+    # LOGIN
+    # ========================================================
+
+    path(
+        "",
+        views.login_page,
+        name="login"
+    ),
+
+
+    # ========================================================
+    # REGISTER
+    # ========================================================
+
+    path(
+        "register/",
+        views.register_page,
+        name="register"
+    ),
+
+
+    # ========================================================
+    # HOME
+    # ========================================================
+
+    path(
+        "home/",
+        views.home_page,
+        name="home"
+    ),
+
+
+    # ========================================================
+    # LOAN ELIGIBILITY
+    # ========================================================
+
+    path(
+        "eligibility/",
+        views.eligibility_step1,
+        name="eligibility_step1"
+    ),
+
+
+    # ========================================================
+    # FINANCIAL DETAILS
+    # ========================================================
+
+    path(
+        "eligibility/financial/",
+        views.eligibility_step2,
+        name="eligibility_step2"
+    ),
+
+
+    # ========================================================
+    # REVIEW
+    # ========================================================
+
+    path(
+        "eligibility/review/",
+        views.eligibility_review,
+        name="eligibility_review"
+    ),
+
+
+    # ========================================================
+    # ML PREDICTION
+    # ========================================================
+
+    path(
+        "eligibility/check/",
+        views.check_eligibility,
+        name="check_eligibility"
+    ),
+
+
+    # ========================================================
+    # PREDICTION HISTORY
+    # ========================================================
+
+    path(
+        "predictions/",
+        views.prediction_list,
+        name="prediction_list"
+    ),
+
+
+    # ========================================================
+    # EDIT
+    # ========================================================
+
+    path(
+        "predictions/edit/<int:id>/",
+        views.edit_prediction,
+        name="edit_prediction"
+    ),
+
+
+    # ========================================================
+    # DELETE
+    # ========================================================
+
+    path(
+        "predictions/delete/<int:id>/",
+        views.delete_prediction,
+        name="delete_prediction"
+    ),
+
+
+    # ========================================================
+    # LOGOUT
+    # ========================================================
+
+    path(
+        "logout/",
+        views.logout_page,
+        name="logout"
+    ),
+
 ]

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>S Bank | Eligibility Result</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        .header {
+            background: #071d3b;
+            color: white;
+            padding: 20px 7%;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #c49a3a;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            background: white;
+            padding: 45px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .approved-icon {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .rejected-icon {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        h1 {
+            color: #0b2451;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .approved {
+            color: #15803d;
+        }
+
+        .rejected {
+            color: #dc2626;
+        }
+
+        .message {
+            color: #687386;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .details {
+            background: #f7f9fc;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            margin-top: 25px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e1e6ee;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            color: #737d8e;
+        }
+
+        .value {
+            font-weight: bold;
+            color: #172033;
+        }
+
+        .notice {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f5f8fd;
+            border-left: 4px solid #0b4da2;
+            text-align: left;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .home-btn {
+            background: #0b376d;
+            color: white;
+        }
+
+        .history-btn {
+            background: #eef2f7;
+            color: #374151;
+        }
+
+        .home-btn:hover {
+            background: #082b57;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                margin: 30px 15px;
+                padding: 30px 20px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="logo">
+        S <span>BANK</span>
+    </div>
+
+</div>
+
+
+<!-- RESULT -->
+
+<div class="container">
+
+
+    <!-- ========================= -->
+    <!-- ELIGIBLE -->
+    <!-- ========================= -->
+
+    {% if result == "Eligible" %}
+
+        <div class="icon approved-icon">
+            ✓
+        </div>
+
+        <h1>
+            Congratulations!
+        </h1>
+
+        <div class="status approved">
+            Loan Eligible
+        </div>
+
+        <p class="message">
+
+            Based on the information provided,
+            our AI-powered preliminary assessment indicates
+            that you are eligible for the requested loan.
+
+        </p>
+
+
+    <!-- ========================= -->
+    <!-- NOT ELIGIBLE -->
+    <!-- ========================= -->
+
+    {% elif result == "Not Eligible" %}
+
+        <div class="icon rejected-icon">
+            ✕
+        </div>
+
+        <h1>
+            Loan Eligibility Result
+        </h1>
+
+        <div class="status rejected">
+            Not Eligible
+        </div>
+
+        <p class="message">
+
+            Based on the information provided,
+            our AI-powered preliminary assessment indicates
+            that the current application does not meet
+            the eligibility criteria.
+
+        </p>
+
+
+    <!-- ========================= -->
+    <!-- UNKNOWN RESULT -->
+    <!-- ========================= -->
+
+    {% else %}
+
+        <div class="icon rejected-icon">
+            !
+        </div>
+
+        <h1>
+            Something Went Wrong
+        </h1>
+
+        <div class="status rejected">
+            Unable to Process
+        </div>
+
+        <p class="message">
+
+            Unable to process the loan prediction.
+
+        </p>
+
+    {% endif %}
+
+
+    <!-- ========================= -->
+    <!-- LOAN DETAILS -->
+    <!-- ========================= -->
+
+    {% if loan %}
+
+    <div class="details">
+
+
+        <div class="row">
+
+            <span class="label">
+                Loan ID
+            </span>
+
+            <span class="value">
+                {{ loan.loan_id }}
+            </span>
+
+        </div>
+
+
+        <div class="row">
+
+            <span class="label">
+                Annual Income
+            </span>
+
+            <span class="value">
+                ₹ {{ loan.income_annum }}
+            </span>
+
+        </div>
+
+
+        <div class="row">
+
+            <span class="label">
+                Requested Loan
+            </span>
+
+            <span class="value">
+                ₹ {{ loan.loan_amount }}
+            </span>
+
+        </div>
+
+
+        <div class="row">
+
+            <span class="label">
+                CIBIL Score
+            </span>
+
+            <span class="value">
+                {{ loan.cibil_score }}
+            </span>
+
+        </div>
+
+
+        <div class="row">
+
+            <span class="label">
+                Loan Tenure
+            </span>
+
+            <span class="value">
+                {{ loan.loan_term }} Years
+            </span>
+
+        </div>
+
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ========================= -->
+    <!-- NOTICE -->
+    <!-- ========================= -->
+
+    <div class="notice">
+
+        <strong>Important:</strong>
+
+        This result is an AI-based preliminary
+        eligibility assessment and does not constitute
+        final loan approval. Final approval is subject
+        to document verification, credit assessment,
+        and the bank's approval process.
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- BUTTONS -->
+    <!-- ========================= -->
+
+    <div class="buttons">
+
+
+        <a
+            href="{% url 'home' %}"
+            class="btn home-btn"
+        >
+            Back to S Bank
+        </a>
+
+
+        <a
+            href="{% url 'prediction_list' %}"
+            class="btn history-btn"
+        >
+            View Application History
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

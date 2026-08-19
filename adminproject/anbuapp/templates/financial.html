@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>S Bank | Financial Details</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        .header {
+            background: #071d3b;
+            color: white;
+            padding: 20px 7%;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #c49a3a;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 45px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ================= PROGRESS ================= */
+
+        .progress {
+            display: flex;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+
+            background: #0b376d;
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-weight: bold;
+        }
+
+        .circle.active {
+            background: #c49a3a;
+        }
+
+        .line {
+            flex: 1;
+            height: 3px;
+            background: #0b376d;
+            margin: 0 10px;
+        }
+
+        /* ================= TITLE ================= */
+
+        .step {
+            color: #0b4da2;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #0b2451;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #687386;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .section h2 {
+            color: #0b2451;
+            font-size: 19px;
+
+            border-bottom: 1px solid #e1e6ee;
+
+            padding-bottom: 12px;
+        }
+
+        .section-description {
+            color: #737d8e;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: bold;
+            color: #374151;
+            margin-bottom: 7px;
+        }
+
+        label span {
+            color: #8a94a6;
+            font-weight: normal;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #d7dde7;
+
+            border-radius: 7px;
+
+            font-size: 14px;
+
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #0b4da2;
+
+            box-shadow:
+                0 0 0 2px rgba(11, 77, 162, 0.08);
+        }
+
+        /* ================= OPTIONAL BOX ================= */
+
+        .optional-box {
+            margin-top: 20px;
+
+            padding: 15px;
+
+            background: #f7f9fc;
+
+            border-left: 4px solid #c49a3a;
+
+            color: #5f6b7a;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .buttons {
+            display: flex;
+
+            gap: 15px;
+
+            margin-top: 35px;
+        }
+
+        .back-btn,
+        .next-btn {
+
+            flex: 1;
+
+            padding: 15px;
+
+            border-radius: 7px;
+
+            text-align: center;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            text-decoration: none;
+        }
+
+        .back-btn {
+            background: #eef2f7;
+            color: #374151;
+        }
+
+        .back-btn:hover {
+            background: #e2e7ee;
+        }
+
+        .next-btn {
+            background: #0b376d;
+            color: white;
+
+            border: none;
+
+            cursor: pointer;
+        }
+
+        .next-btn:hover {
+            background: #082b57;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 650px) {
+
+            .container {
+                margin: 25px 15px;
+                padding: 25px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<div class="header">
+
+    <div class="logo">
+
+        S <span>BANK</span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     MAIN CONTAINER
+========================================================= -->
+
+<div class="container">
+
+
+    <!-- =====================================================
+         PROGRESS
+    ====================================================== -->
+
+    <div class="progress">
+
+        <div class="circle">
+            ✓
+        </div>
+
+        <div class="line"></div>
+
+        <div class="circle active">
+            2
+        </div>
+
+        <div class="line"></div>
+
+        <div class="circle">
+            3
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TITLE
+    ====================================================== -->
+
+    <div class="step">
+
+        STEP 2 OF 3
+
+    </div>
+
+
+    <h1>
+
+        Financial Information
+
+    </h1>
+
+
+    <p class="description">
+
+        Please provide your financial information
+        to help us assess your preliminary loan eligibility.
+
+    </p>
+
+
+
+    <!-- =====================================================
+         IMPORTANT:
+         THE WHOLE PAGE IS INSIDE ONE FORM
+    ====================================================== -->
+
+    <form
+        method="POST"
+        action="{% url 'eligibility_step2' %}"
+    >
+
+        {% csrf_token %}
+
+
+
+        <!-- =================================================
+             FINANCIAL DETAILS
+        ================================================== -->
+
+        <div class="section">
+
+            <h2>
+
+                Financial Details
+
+            </h2>
+
+
+            <div class="form-grid">
+
+
+                <!-- ANNUAL INCOME -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Annual Income
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="income_annum"
+                        placeholder="Enter annual income"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- LOAN AMOUNT -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Requested Loan Amount
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="loan_amount"
+                        placeholder="Enter loan amount"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- LOAN TERM -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Loan Tenure
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="loan_term"
+                        placeholder="Enter tenure"
+                        min="1"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- CIBIL SCORE -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        CIBIL Score
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="cibil_score"
+                        placeholder="Enter CIBIL score"
+                        min="0"
+                        max="900"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ASSET DETAILS
+        ================================================== -->
+
+        <div class="section">
+
+
+            <h2>
+
+                Asset Details
+
+            </h2>
+
+
+            <p class="section-description">
+
+                Asset information is optional.
+                If you do not have any assets, you can leave
+                these fields empty.
+
+            </p>
+
+
+
+            <div class="form-grid">
+
+
+                <!-- RESIDENTIAL ASSETS -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Residential Assets
+                        <span>(Optional)</span>
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="residential_assets_value"
+                        placeholder="Enter amount if applicable"
+                        min="0"
+                    >
+
+                </div>
+
+
+
+                <!-- COMMERCIAL ASSETS -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Commercial Assets
+                        <span>(Optional)</span>
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="commercial_assets_value"
+                        placeholder="Enter amount if applicable"
+                        min="0"
+                    >
+
+                </div>
+
+
+
+                <!-- LUXURY ASSETS -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Luxury Assets
+                        <span>(Optional)</span>
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="luxury_assets_value"
+                        placeholder="Enter amount if applicable"
+                        min="0"
+                    >
+
+                </div>
+
+
+
+                <!-- BANK ASSETS -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Bank Assets
+                        <span>(Optional)</span>
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="bank_asset_value"
+                        placeholder="Enter amount if applicable"
+                        min="0"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- OPTIONAL INFORMATION -->
+
+            <div class="optional-box">
+
+                <strong>Note:</strong>
+
+                Asset details are optional.
+                If you don't have any assets, you can leave
+                these fields empty. Empty asset fields will be
+                considered as ₹0 during the preliminary
+                AI-based assessment.
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             BUTTONS
+        ================================================== -->
+
+        <div class="buttons">
+
+
+            <!-- BACK -->
+
+            <a
+                href="{% url 'eligibility_step1' %}"
+                class="back-btn"
+            >
+
+                ← Back
+
+            </a>
+
+
+
+            <!-- CONTINUE -->
+
+            <button
+                type="submit"
+                class="next-btn"
+            >
+
+                Continue to Review →
+
+            </button>
+
+
+        </div>
+
+
+    </form>
+
+
+</div>
+
+
+</body>
+
+</html>
