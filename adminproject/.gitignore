@@ -10,6 +10,7 @@ env/
 
 # Django
 *.sqlite3
+staticfiles/
 
 # Environment variables
 .env
