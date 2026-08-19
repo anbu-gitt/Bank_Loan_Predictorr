@@ -1,14 +1,8 @@
 {
-    "builds": [
+    "rewrites": [
         {
-            "src": "adminproject/wsgi.py",
-            "use": "@vercel/python"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "adminproject/wsgi.py"
+            "source": "/(.*)",
+            "destination": "/api"
         }
     ]
 }
